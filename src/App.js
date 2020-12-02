@@ -79,7 +79,7 @@ class App extends Component {
 
 
 
-    const CORS_PROXY
+    const CORS_PROXY = ""
     let Parser = require('rss-parser');
     let parser = new Parser();
 
@@ -97,7 +97,7 @@ class App extends Component {
 
 let links = ["https://www.ruhr-uni-bochum.de/mak/lehre/master/index.html.de" ,"https://www.ruhr-uni-bochum.de/mak/lehre/master/ss.html.de",];
 links.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
 
     let content_makro = this.state.content_makro;
@@ -122,7 +122,7 @@ rp(CORS_PROXY + link )
 //Applied Microeconomics
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/appliedmicro/")
+rp(  "http://www.wiwi.ruhr-uni-bochum.de/appliedmicro/")
 .then(html => {
 const links_appliedmicro = []
 let $ = cheerio.load(html);
@@ -132,7 +132,7 @@ links_appliedmicro.push(link)
 //Grab link of teaching page and crawl contents
 links_appliedmicro.forEach(link =>   {
 
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_appliedmicro;
     let titles = this.state.title_appliedmicro;
@@ -153,7 +153,7 @@ rp(CORS_PROXY + link )
 //Empirische makroökonomik
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.rub.de/empmak/lehre/index.html.de")
+rp(  "http://www.wiwi.rub.de/empmak/lehre/index.html.de")
 .then(html => {
 const links_empmak = []
 let $ = cheerio.load(html);
@@ -163,7 +163,7 @@ links_empmak.push(link,link2)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_empmak.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_empmak;
     let titles = this.state.title_empmak;
@@ -184,7 +184,7 @@ rp(CORS_PROXY + link )
 //Empirical Economics
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.rub.de/empwifo/lehre/index.html.en")
+rp(  "http://www.wiwi.rub.de/empwifo/lehre/index.html.en")
 .then(html => {
 const links_empwifo = []
 let $ = cheerio.load(html);
@@ -194,7 +194,7 @@ links_empwifo.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_empwifo.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_empwifo;
     let titles = this.state.title_empwifo;
@@ -214,7 +214,7 @@ rp(CORS_PROXY + link )
 //Honorarprofessur für Energieökonomik & -politik
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/enecon/index.html.de")
+rp(  "http://www.wiwi.ruhr-uni-bochum.de/enecon/index.html.de")
 .then(html => {
 const links_enecon = []
 let $ = cheerio.load(html);
@@ -224,7 +224,7 @@ links_enecon.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_enecon.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_enecon;
     let titles = this.state.title_enecon;
@@ -245,7 +245,7 @@ rp(CORS_PROXY + link )
 //Centrum für Umweltmanagement, Ressourcen und Energie
 
 //Grab link of teaching page
-rp(CORS_PROXY + "https://www.wiwi.ruhr-uni-bochum.de/cure/lehre/index.html.de")
+rp(  "https://www.wiwi.ruhr-uni-bochum.de/cure/lehre/index.html.de")
 .then(html => {
 const links_cure = []
 let $ = cheerio.load(html);
@@ -255,7 +255,7 @@ links_cure.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_cure.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_cure;
     let titles = this.state.title_cure;
@@ -277,7 +277,7 @@ rp(CORS_PROXY + link )
 //Apl.-Professur für Energy Economics and Applied Econometrics
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/energy/lehre/")
+rp(  "http://www.wiwi.ruhr-uni-bochum.de/energy/lehre/")
 .then(html => {
 const links_energy = []
 let $ = cheerio.load(html);
@@ -291,7 +291,7 @@ links_energy.push(link,link2)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_energy.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_energy;
     let titles = this.state.title_energy;
@@ -313,7 +313,7 @@ rp(CORS_PROXY + link )
 //Lehrstuhl für Entwicklungsforschung
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/lef/lehre/")
+rp(  "http://www.wiwi.ruhr-uni-bochum.de/lef/lehre/")
 .then(html => {
 const links_lef = []
 let $ = cheerio.load(html);
@@ -327,7 +327,7 @@ links_lef.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_lef.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_lef;
     let titles = this.state.title_lef;
@@ -349,7 +349,7 @@ rp(CORS_PROXY + link )
 //Lehrstuhl für Finanzwissenschaft und Wirtschaftspolitik
 
 //Grab link of teaching page
-rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/fiwipo/")
+rp(  "http://www.wiwi.ruhr-uni-bochum.de/fiwipo/")
 .then(html => {
 const links_fiwipo = []
 let $ = cheerio.load(html);
@@ -369,7 +369,7 @@ links_fiwipo.push(link,link2)
 
 // crawl contents
 links_fiwipo.forEach(link =>   {
-rp(CORS_PROXY + link )
+rp(  link )
   .then(html => {
     let contents = this.state.content_fiwipo;
     let titles = this.state.title_fiwipo;
@@ -390,7 +390,7 @@ rp(CORS_PROXY + link )
 
 
 
-// rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/fakultaet/vwl.html.de")
+// rp(  "http://www.wiwi.ruhr-uni-bochum.de/fakultaet/vwl.html.de")
 // .then(html => {
 // const links_crawl = []
 // let $ = cheerio.load(html);
@@ -398,7 +398,7 @@ rp(CORS_PROXY + link )
 // links_crawl.push($(this).attr("href"))
 // });
 //   links_crawl.forEach(link =>   {
-//     rp(CORS_PROXY + link )
+//     rp(  link )
 //       .then(html => {
 //         const links_crawl2=[]
 //         var link
@@ -419,7 +419,7 @@ rp(CORS_PROXY + link )
 //
 //
 //         links_crawl2.forEach(link =>   {
-//         rp(CORS_PROXY + link )
+//         rp(  link )
 //           .then(html => {
 //             let contents = this.state.content_scrape;
 //             let titles = this.state.title_scrape;
@@ -455,7 +455,7 @@ rp(CORS_PROXY + link )
 //                  }
 //                });
 //                links_crawl3.forEach(link =>   {
-//                rp(CORS_PROXY + link )
+//                rp(  link )
 //                  .then(html => {
 //                    let subcontents= this.state.content_scrape
 //                    let subcontents_titles = this.state.subcontent_title_scrape
