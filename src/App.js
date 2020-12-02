@@ -51,7 +51,6 @@ class App extends Component {
   }
 
 
-
   async componentDidMount() {
     function uuid() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -80,11 +79,9 @@ class App extends Component {
 
 
 
-    const CORS_PROXY = "/.netlify/functions/node-fetch/"
+    const CORS_PROXY = "https://corsrubhub.herokuapp.com/"
     let Parser = require('rss-parser');
     let parser = new Parser();
-
-
 
 
 
@@ -100,7 +97,7 @@ class App extends Component {
 
 let links = ["https://www.ruhr-uni-bochum.de/mak/lehre/master/index.html.de" ,"https://www.ruhr-uni-bochum.de/mak/lehre/master/ss.html.de",];
 links.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
 
     let content_makro = this.state.content_makro;
@@ -125,7 +122,7 @@ rp(  link )
 //Applied Microeconomics
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.ruhr-uni-bochum.de/appliedmicro/")
+rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/appliedmicro/")
 .then(html => {
 const links_appliedmicro = []
 let $ = cheerio.load(html);
@@ -135,7 +132,7 @@ links_appliedmicro.push(link)
 //Grab link of teaching page and crawl contents
 links_appliedmicro.forEach(link =>   {
 
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_appliedmicro;
     let titles = this.state.title_appliedmicro;
@@ -156,7 +153,7 @@ rp(  link )
 //Empirische makroökonomik
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.rub.de/empmak/lehre/index.html.de")
+rp(CORS_PROXY + "http://www.wiwi.rub.de/empmak/lehre/index.html.de")
 .then(html => {
 const links_empmak = []
 let $ = cheerio.load(html);
@@ -166,7 +163,7 @@ links_empmak.push(link,link2)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_empmak.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_empmak;
     let titles = this.state.title_empmak;
@@ -187,7 +184,7 @@ rp(  link )
 //Empirical Economics
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.rub.de/empwifo/lehre/index.html.en")
+rp(CORS_PROXY + "http://www.wiwi.rub.de/empwifo/lehre/index.html.en")
 .then(html => {
 const links_empwifo = []
 let $ = cheerio.load(html);
@@ -197,7 +194,7 @@ links_empwifo.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_empwifo.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_empwifo;
     let titles = this.state.title_empwifo;
@@ -217,7 +214,7 @@ rp(  link )
 //Honorarprofessur für Energieökonomik & -politik
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.ruhr-uni-bochum.de/enecon/index.html.de")
+rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/enecon/index.html.de")
 .then(html => {
 const links_enecon = []
 let $ = cheerio.load(html);
@@ -227,7 +224,7 @@ links_enecon.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_enecon.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_enecon;
     let titles = this.state.title_enecon;
@@ -248,7 +245,7 @@ rp(  link )
 //Centrum für Umweltmanagement, Ressourcen und Energie
 
 //Grab link of teaching page
-rp(  "https://www.wiwi.ruhr-uni-bochum.de/cure/lehre/index.html.de")
+rp(CORS_PROXY + "https://www.wiwi.ruhr-uni-bochum.de/cure/lehre/index.html.de")
 .then(html => {
 const links_cure = []
 let $ = cheerio.load(html);
@@ -258,7 +255,7 @@ links_cure.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_cure.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_cure;
     let titles = this.state.title_cure;
@@ -280,7 +277,7 @@ rp(  link )
 //Apl.-Professur für Energy Economics and Applied Econometrics
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.ruhr-uni-bochum.de/energy/lehre/")
+rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/energy/lehre/")
 .then(html => {
 const links_energy = []
 let $ = cheerio.load(html);
@@ -294,7 +291,7 @@ links_energy.push(link,link2)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_energy.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_energy;
     let titles = this.state.title_energy;
@@ -316,7 +313,7 @@ rp(  link )
 //Lehrstuhl für Entwicklungsforschung
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.ruhr-uni-bochum.de/lef/lehre/")
+rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/lef/lehre/")
 .then(html => {
 const links_lef = []
 let $ = cheerio.load(html);
@@ -330,7 +327,7 @@ links_lef.push(link)
 // links_empmak.push(link2)
 //Grab link of teaching page and crawl contents
 links_lef.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_lef;
     let titles = this.state.title_lef;
@@ -352,7 +349,7 @@ rp(  link )
 //Lehrstuhl für Finanzwissenschaft und Wirtschaftspolitik
 
 //Grab link of teaching page
-rp(  "http://www.wiwi.ruhr-uni-bochum.de/fiwipo/")
+rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/fiwipo/")
 .then(html => {
 const links_fiwipo = []
 let $ = cheerio.load(html);
@@ -372,7 +369,7 @@ links_fiwipo.push(link,link2)
 
 // crawl contents
 links_fiwipo.forEach(link =>   {
-rp(  link )
+rp(CORS_PROXY + link )
   .then(html => {
     let contents = this.state.content_fiwipo;
     let titles = this.state.title_fiwipo;
@@ -393,7 +390,7 @@ rp(  link )
 
 
 
-// rp(  "http://www.wiwi.ruhr-uni-bochum.de/fakultaet/vwl.html.de")
+// rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/fakultaet/vwl.html.de")
 // .then(html => {
 // const links_crawl = []
 // let $ = cheerio.load(html);
@@ -401,7 +398,7 @@ rp(  link )
 // links_crawl.push($(this).attr("href"))
 // });
 //   links_crawl.forEach(link =>   {
-//     rp(  link )
+//     rp(CORS_PROXY + link )
 //       .then(html => {
 //         const links_crawl2=[]
 //         var link
@@ -422,7 +419,7 @@ rp(  link )
 //
 //
 //         links_crawl2.forEach(link =>   {
-//         rp(  link )
+//         rp(CORS_PROXY + link )
 //           .then(html => {
 //             let contents = this.state.content_scrape;
 //             let titles = this.state.title_scrape;
@@ -458,7 +455,7 @@ rp(  link )
 //                  }
 //                });
 //                links_crawl3.forEach(link =>   {
-//                rp(  link )
+//                rp(CORS_PROXY + link )
 //                  .then(html => {
 //                    let subcontents= this.state.content_scrape
 //                    let subcontents_titles = this.state.subcontent_title_scrape
@@ -634,7 +631,7 @@ return (
 
 <section>
   <details>
-    <summary>Lehrstuhl für Makroökonomik</summary>
+    <summary>Lehrstuhl für Makroökonomik!</summary>
     {content_mak.map((a, index) => (
   <div  key={index}>
   <section>
