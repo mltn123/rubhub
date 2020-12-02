@@ -51,6 +51,7 @@ class App extends Component {
   }
 
 
+
   async componentDidMount() {
     function uuid() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -79,9 +80,11 @@ class App extends Component {
 
 
 
-    const CORS_PROXY = ""
+    const CORS_PROXY = "/.netlify/functions/node-fetch/"
     let Parser = require('rss-parser');
     let parser = new Parser();
+
+
 
 
 
