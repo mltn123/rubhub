@@ -79,7 +79,7 @@ class App extends Component {
 
 
 
-    const CORS_PROXY = ""
+    const CORS_PROXY
     let Parser = require('rss-parser');
     let parser = new Parser();
 
