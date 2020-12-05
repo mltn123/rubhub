@@ -8,14 +8,20 @@
     "@testing-library/user-event": "^12.1.10",
     "algoliasearch": "^4.8.2",
     "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "bourbon-neat": "^4.0.0",
     "cheerio": "^1.0.0-rc.3",
     "cors-anywhere": "^0.4.3",
     "interweave": "^12.6.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-burger-menu": "^2.9.0",
+    "react-component-caching": "^1.1.1",
     "react-dom": "^17.0.1",
+    "react-fade-in": "^1.1.1",
     "react-instantsearch-dom": "^6.8.2",
+    "react-loading": "^2.0.3",
+    "react-lottie": "^1.2.3",
     "react-metismenu": "^1.4.0",
     "react-scripts": "4.0.0",
     "request-promise": "^4.2.6",
@@ -46,5 +52,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

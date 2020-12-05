@@ -1,5 +1,17 @@
 .App {
-  text-align: center;
+  text-align: left;
+}
+
+.about {
+text-align: left;
+position: relative;
+left: 20px;
+border: none;
+padding: 10px;
+
+
+
+
 }
 
 
@@ -86,6 +98,13 @@ tbody {
   overflow: scroll;
   height: 200px;
 }
+
+
+
+
+
+
+
 
 /* MAKE LEFT COLUMN FIXEZ */
 tr > :first-child {
