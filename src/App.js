@@ -31,8 +31,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
+
 
 
 
@@ -82,6 +82,18 @@ class App extends React.Component {
 
       content_statoek:[],
       title_statoek:[],
+
+      content_mikro:[],
+      title_mikro:[],
+
+      content_uipol:[],
+      title_uipol:[],
+
+      content_vwp3:[],
+      title_vwp3:[],
+
+      content_wipooek:[],
+      title_wipooek:[],
 
       content_scrape:[],
       title_scrape:[],
@@ -562,8 +574,136 @@ class App extends React.Component {
 
   })
  })
-
  })
+ //Lehrstuhl für Theoretische und Angewandte Mikroökonomik
+
+ //Grab link of teaching page
+ rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/mikro/")
+ .then(html => {
+ const links_mikro = []
+ let $ = cheerio.load(html);
+ let link =  "http://www.wiwi.ruhr-uni-bochum.de" + $('.ausgeklappt > li:nth-child(1) > a:nth-child(1)').attr("href")
+ let link2 = "http://www.wiwi.ruhr-uni-bochum.de" + $('.ausgeklappt > li:nth-child(2) > a:nth-child(1)').attr("href")
+
+
+ links_mikro.push(link,link2)
+ // crawl contents
+ links_mikro.forEach(link =>   {
+ rp(CORS_PROXY + link )
+ .then(html => {
+  let contents = this.state.content_mikro;
+  let titles = this.state.title_mikro;
+  let $ = cheerio.load(html);
+   let content =  $.html($('#inhalt'))
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+
+   content = content.replaceAll("mikro/mam/", "https://www.wiwi.ruhr-uni-bochum.de/mikro/mam/" )
+   contents.push(content);
+   titles.push(title);
+  this.setState({content_mikro: contents})
+  this.setState({title_mikro: titles})
+
+  })
+ })
+ })
+
+ //Lehrstuhl für Umwelt- und Innovationspolitik
+
+ //Grab link of teaching page
+ rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/uipol/lehre/")
+ .then(html => {
+ const links_uipol = []
+ let $ = cheerio.load(html);
+ let link =  "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > a:nth-child(1)').attr("href")
+
+
+ links_uipol.push(link)
+ // crawl contents
+ links_uipol.forEach(link =>   {
+ rp(CORS_PROXY + link )
+ .then(html => {
+  let contents = this.state.content_uipol;
+  let titles = this.state.title_uipol;
+  let $ = cheerio.load(html);
+   let content =  $.html($('#inhalt'))
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+
+   content = content.replaceAll("/uipol/mam/", "https://www.wiwi.ruhr-uni-bochum.de/uipol/mam/" )
+   contents.push(content);
+   titles.push(title);
+  this.setState({content_uipol: contents})
+  this.setState({title_uipol: titles})
+
+  })
+ })
+ })
+
+ //Lehrstuhl für Volkswirtschaftspolitik 3
+
+ //Grab link of teaching page
+ rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/vwp3/lehre/")
+ .then(html => {
+ const links_vwp3 = []
+ let $ = cheerio.load(html);
+ let link =  "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
+ let link2 =  "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)').attr("href")
+ let link3 =  "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(3) > a:nth-child(1)').attr("href")
+ let link4 =  "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(4) > a:nth-child(1)').attr("href")
+ links_vwp3.push(link,link2,link3,link4)
+ // crawl contents
+ links_vwp3.forEach(link =>   {
+ rp(CORS_PROXY + link )
+ .then(html => {
+  let contents = this.state.content_vwp3;
+  let titles = this.state.title_vwp3;
+  let $ = cheerio.load(html);
+   let content =  $.html($('#inhalt'))
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+
+   content = content.replaceAll("/mam/", "https://www.wiwi.ruhr-uni-bochum.de/mam/" )
+   contents.push(content);
+   titles.push(title);
+   this.setState({content_vwp3: contents})
+   this.setState({title_vwp3: titles})
+
+  })
+ })
+ })
+
+ //Lehrstuhl für Wirtschaftspolitik und angewandte Ökonometrie
+
+ //Grab link of teaching page
+ rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/wipooek/lehre/")
+ .then(html => {
+ const links_wipooek = []
+ let $ = cheerio.load(html);
+ let link =  "http://www.wiwi.ruhr-uni-bochum.de" + $('ul.liste_mit_typrechts:nth-child(5) > li:nth-child(1) > a:nth-child(1)').attr("href")
+ let link2 =  "http://www.wiwi.ruhr-uni-bochum.de" + $('ul.liste_mit_typrechts:nth-child(5) > li:nth-child(2) > a:nth-child(1)').attr("href")
+
+ links_wipooek.push(link,link2)
+ // crawl contents
+ links_wipooek.forEach(link =>   {
+ rp(CORS_PROXY + link )
+ .then(html => {
+  let contents = this.state.content_wipooek;
+  let titles = this.state.title_wipooek;
+  let $ = cheerio.load(html);
+   let content =  $.html($('#inhalt'))
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+
+   content = content.replaceAll("/mam/", "https://www.wiwi.ruhr-uni-bochum.de/mam/" )
+   contents.push(content);
+   titles.push(title);
+   this.setState({content_wipooek: contents})
+   this.setState({title_wipooek: titles})
+
+  })
+ })
+ })
+
+
+
+
  setTimeout(
         function() {
          this.setState({ isLoading: false });
@@ -573,17 +713,7 @@ class App extends React.Component {
 
 }
 
-handleChange(event) {
 
-
-  this.setState({value: event.target.value});
-
-}
-
- handleSubmit(event) {
-
-
- }
 
 
 
@@ -620,7 +750,14 @@ display = () => {
   const title_rdw = this.state.title_rdw;
   const content_statoek = this.state.content_statoek ;
   const title_statoek = this.state.title_statoek;
-
+  const content_mikro = this.state.content_mikro ;
+  const title_mikro = this.state.title_mikro;
+  const content_uipol = this.state.content_uipol ;
+  const title_uipol = this.state.title_uipol;
+  const content_vwp3 = this.state.content_vwp3 ;
+  const title_vwp3 = this.state.title_vwp3;
+  const content_wipooek = this.state.content_wipooek ;
+  const title_wipooek = this.state.title_wipooek;
   // const content_scrape = this.state.content_scrape;
   // const title_scrape = this.state.title_scrape;
   // const subcontent_scrape = this.state.subcontent_scrape;
@@ -743,6 +880,39 @@ display = () => {
   };
 
   });
+
+  var content_mikr = content_mikro.map(function(_, i) {
+  return {
+  content : content_mikro[i] ,
+  title: title_mikro[i],
+  };
+
+  });
+
+  var content_uipo = content_uipol.map(function(_, i) {
+  return {
+  content : content_uipol[i] ,
+  title: title_uipol[i],
+  };
+
+  });
+
+  var content_vwp = content_vwp3.map(function(_, i) {
+  return {
+  content : content_vwp3[i] ,
+  title: title_vwp3[i],
+  };
+
+  });
+
+  var content_wipooe = content_wipooek.map(function(_, i) {
+  return {
+  content : content_wipooek[i] ,
+  title: title_wipooek[i],
+  };
+
+  });
+
 
 
      return (
@@ -1015,6 +1185,78 @@ display = () => {
                                                      ))}
                                                      </details>
                                                    </section>
+                                                   <section>
+                                                     <details>
+                                                       <summary>Lehrstuhl für Theoretische und Angewandte Mikroökonomik </summary>
+                                                     {content_mikr.map((o, index) => (
+                                                   <div  key={index}>
+                                                   <section>
+                                                     <details>
+                                                       <summary>{o.title}</summary>
+                                                       <div>
+                                                           <Markup content={o.content} />
+                                                       </div>
+                                                     </details>
+                                                   </section>
+                                                       </div>
+
+                                                        ))}
+                                                        </details>
+                                                      </section>
+                                                      <section>
+                                                        <details>
+                                                          <summary>Lehrstuhl für Umwelt- und Innovationspolitik </summary>
+                                                        {content_uipo.map((p, index) => (
+                                                      <div  key={index}>
+                                                      <section>
+                                                        <details>
+                                                          <summary>{p.title}</summary>
+                                                          <div>
+                                                              <Markup content={p.content} />
+                                                          </div>
+                                                        </details>
+                                                      </section>
+                                                          </div>
+
+                                                           ))}
+                                                           </details>
+                                                         </section>
+                                                         <section>
+                                                           <details>
+                                                             <summary>Lehrstuhl für Volkswirtschaftspolitik 3</summary>
+                                                           {content_vwp.map((q, index) => (
+                                                         <div  key={index}>
+                                                         <section>
+                                                           <details>
+                                                             <summary>{q.title}</summary>
+                                                             <div>
+                                                                 <Markup content={q.content} />
+                                                             </div>
+                                                           </details>
+                                                         </section>
+                                                             </div>
+
+                                                              ))}
+                                                              </details>
+                                                            </section>
+                                                            <section>
+                                                              <details>
+                                                                <summary>Lehrstuhl für Wirtschaftspolitik und angewandte Ökonometrie</summary>
+                                                              {content_wipooe.map((r, index) => (
+                                                            <div  key={index}>
+                                                            <section>
+                                                              <details>
+                                                                <summary>{r.title}</summary>
+                                                                <div>
+                                                                    <Markup content={r.content} />
+                                                                </div>
+                                                              </details>
+                                                            </section>
+                                                                </div>
+
+                                                                 ))}
+                                                                 </details>
+                                                               </section>
                                                    </div>
      );
 
@@ -1107,7 +1349,7 @@ handleHome = () => {
                 Weil das Studium schon hart genug ist. Muss es nicht auch noch die Semesterplanung sein.
                 <ul>
                <li>ReactJS Webapp</li>
-               <li>Webcrawler versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen</li>
+               <li>Webcrawler versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen (vorerst nur Master)</li>
                <li>Projekt zum vertiefen meiner JavaScript Fähigkeiten.</li>
                <li>Code: <a href="https://github.com/mltn123/rubhub">github.com/mltn123/rubhub</a>  </li>
               </ul>

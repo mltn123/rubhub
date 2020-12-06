@@ -37,14 +37,7 @@ padding: 10px;
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 /* default styling. Nothing to do with freexing first row and column */
 main {display: flex;}
@@ -107,13 +100,3 @@ tbody {
 
 
 /* MAKE LEFT COLUMN FIXEZ */
-tr > :first-child {
-  position: -webkit-sticky;
-  position: sticky;
-  background: #e7e7e7;
-  left: 0;
-}
-/* don't do this */
-tr > :first-child {
-  box-shadow: inset 0px 1px black;
-}
