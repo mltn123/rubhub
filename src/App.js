@@ -1,6 +1,7 @@
 import React from 'react';
 
 import logo from './logo.png';
+import spreadsheet from './spreadsheet.png';
 
 import "./Navigation.scss"
 import "./Accordion.scss"
@@ -1301,11 +1302,11 @@ handleHome = () => {
         <div class = "App">
 
           <nav role="navigation" class="primary-navigation">
+               <img src={spreadsheet} alt="Logo" width="200" height="142" />
       <ul>
         <li><a href="#" onClick={this.handleHome}>Lehre VWL</a></li>
 
         <li><a href="#" onClick={this.handleAbout}>Über</a></li>
-        <li><a href="#">Kontakt</a></li>
         </ul>
 
         </nav>
@@ -1337,21 +1338,22 @@ handleHome = () => {
            <div class = "App">
 
              <nav role="navigation" class="primary-navigation">
+                                       <img src={logo} alt="Logo" width="200" height="142" />
              <ul>
                <li><a href="#" onClick={this.handleHome}>Lehre VWL</a></li>
 
                <li><a href="#" onClick={this.handleAbout}>Über</a></li>
-               <li><a href="#">Kontakt</a></li>
                </ul>
            </nav>
-           <img src={logo} alt="Logo" width="200" height="142" />
+
            <div class ="about">
                 Weil das Studium schon hart genug ist. Muss es nicht auch noch die Semesterplanung sein.
                 <ul>
                <li>ReactJS Webapp</li>
-               <li>Webcrawler versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen (vorerst nur Master)</li>
+               <li>Webcrawler versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen (vorerst nur für Master-Module)</li>
                <li>Projekt zum vertiefen meiner JavaScript Fähigkeiten.</li>
                <li>Code: <a href="https://github.com/mltn123/rubhub">github.com/mltn123/rubhub</a>  </li>
+               <li>Kontakt: <a href="mailto:malten994@gmail.com">malten994@gmail.com</a>  </li>
               </ul>
           </div>
            </div>
