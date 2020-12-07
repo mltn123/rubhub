@@ -9,9 +9,8 @@ import "./App.css"
 import { Markup } from 'interweave';
 import rp from "request-promise";
 import cheerio from "cheerio";
-
-
-
+import Lottie from 'react-lottie';
+import animationData from './rubhub_2'
 
 
 
@@ -125,7 +124,7 @@ class App extends React.Component {
 
 
 
- let links = ["https://www.ruhr-uni-bochum.de/mak/lehre/master/index.html.de" ,"https://www.ruhr-uni-bochum.de/mak/lehre/master/ss.html.de",];
+ let links = ["https://www.ruhr-uni-bochum.de/mak/lehre/master/index.html.de" ,"https://www.ruhr-uni-bochum.de/mak/lehre/master/ss.html.de","https://www.ruhr-uni-bochum.de/mak/lehre/bachelor/ss.html.de","https://www.ruhr-uni-bochum.de/mak/lehre/bachelor/index.html.de"];
  links.forEach(link =>   {
  rp(CORS_PROXY + link )
  .then(html => {
@@ -135,7 +134,7 @@ class App extends React.Component {
   let $ = cheerio.load(html);
 
    let content = $.html($('#inhaltsbereich')) + $.html($('#col3'))
-   let title = $('#headerbackground > h2:nth-child(6)').text()+ " - " + $('#inhaltsbereich > h2:nth-child(2)').text()
+   let title = $('#headerbackground > h2:nth-child(6)').text()+ " - " + $('#headerbackground > h1:nth-child(5)').text()
    content = content.replaceAll("/mak/mam/", "http://ruhr-uni-bochum.de/mak/mam/" )
 
    content_makro.push(content);
@@ -231,7 +230,8 @@ class App extends React.Component {
   let titles = this.state.title_empwifo;
   let $ = cheerio.load(html);
    let content = $.html($('#col3_content'))
-   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(4)').text()
+   content = content.replaceAll("/empwifo//", "https://www.wiwi.ruhr-uni-bochum.de/empwifo/" )
    contents.push(content);
    titles.push(title);
   this.setState({content_empwifo: contents})
@@ -480,14 +480,17 @@ class App extends React.Component {
  //Lehrstuhl für internationale Wirtschaftsbeziehungen
 
  //Grab link of teaching page
- rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/iwb/master.html.de")
+ rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/iwb/")
  .then(html => {
  const links_iwb = []
  let $ = cheerio.load(html);
- let link=  $('.liste_mit_typrechts > li:nth-child(1) > a:nth-child(1)').attr("href")
+ // let link=  $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
+ // let link2=  $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
+ let link = 'http://www.wiwi.rub.de/iwb/aktuelle_lehrveranstaltungen_bachelor.html.de'
+ let link2= 'http://www.wiwi.rub.de/iwb/aktuelle_lehrveranstaltungen_master.html.de'
 
 
- links_iwb.push(link)
+ links_iwb.push(link,link2)
  // crawl contents
  links_iwb.forEach(link =>   {
  rp(CORS_PROXY + link )
@@ -496,7 +499,7 @@ class App extends React.Component {
   let titles = this.state.title_iwb;
   let $ = cheerio.load(html);
    let content =  $.html($('#inhalt'))
-   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#inhalt > h2:nth-child(2)').text()
+   let title = $('#ueberschrift > p:nth-child(1) > span:nth-child(5)').text()+ " - " + $('#ueberschrift > p:nth-child(1) > span:nth-child(2)').text()
 
  content = content.replaceAll("/mam/", "https://www.wiwi.ruhr-uni-bochum.de/mam/" )
    contents.push(content);
@@ -697,6 +700,7 @@ class App extends React.Component {
    titles.push(title);
    this.setState({content_wipooek: contents})
    this.setState({title_wipooek: titles})
+
 
   })
  })
@@ -1282,22 +1286,26 @@ handleHome = () => {
      let showHome = this.state.showHome;
      let showAbout = this.state.showAbout;
 
+     const defaultOptions = {
+          loop: true,
+          autoplay: true,
+          animationData: animationData,
+          rendererSettings: {
+
+          }
+        };
+
+
      if (showHome) {
      return (
   <div>
          {isLoading ? (
-           <div class="loader">
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       	<div></div>
-       <p>LOADING</p>
-       </div>
+            <div>  <Lottie
+	    options={defaultOptions}
+        height={400}
+        width={400}
+      /></div>
+
          ) : (
         <div class = "App">
 
@@ -1350,7 +1358,7 @@ handleHome = () => {
                 Weil das Studium schon hart genug ist. Muss es nicht auch noch die Semesterplanung sein.
                 <ul>
                <li>ReactJS Webapp</li>
-               <li>Webcrawler versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen (vorerst nur für Master-Module)</li>
+               <li>Die App versucht von allen VWL-Lehrstühlen der Ruhr Universität Bochum die aktuellsten Informationen zur Lehre zu bekommen.</li>
                <li>Projekt zum vertiefen meiner JavaScript Fähigkeiten.</li>
                <li>Code: <a href="https://github.com/mltn123/rubhub">github.com/mltn123/rubhub</a>  </li>
                <li>Kontakt: <a href="mailto:malten994@gmail.com">malten994@gmail.com</a>  </li>
