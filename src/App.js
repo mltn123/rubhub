@@ -10,7 +10,7 @@ import { Markup } from 'interweave';
 import rp from "request-promise";
 import cheerio from "cheerio";
 import Lottie from 'react-lottie';
-import animationData from './rubhub_2'
+import animationData from './data'
 
 
 
@@ -219,7 +219,6 @@ class App extends React.Component {
  const links_empwifo = []
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#inhalt > ul:nth-child(3) > li:nth-child(1) > a:nth-child(1)').attr("href")
- console.log("test")
  links_empwifo.push(link)
  // links_empmak.push(link2)
  //Grab link of teaching page and crawl contents
@@ -250,7 +249,7 @@ class App extends React.Component {
  const links_enecon = []
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > a:nth-child(1)').attr("href")
- console.log()
+
  links_enecon.push(link)
  // links_empmak.push(link2)
  //Grab link of teaching page and crawl contents
@@ -281,7 +280,7 @@ class App extends React.Component {
  const links_cure = []
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(5) > a:nth-child(1)').attr("href")
- console.log()
+
  links_cure.push(link)
  // links_empmak.push(link2)
  //Grab link of teaching page and crawl contents
@@ -314,7 +313,7 @@ class App extends React.Component {
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('.hauptmenu-ausgeklappt > li:nth-child(1) > a:nth-child(1)').attr("href")
  let link2 = "http://www.wiwi.ruhr-uni-bochum.de" + $('.hauptmenu-ausgeklappt > li:nth-child(2) > a:nth-child(1)').attr("href")
- console.log()
+
 
  links_energy.push(link,link2)
 
@@ -350,7 +349,7 @@ class App extends React.Component {
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
 
- console.log(link)
+
 
  links_lef.push(link)
 
@@ -419,7 +418,7 @@ class App extends React.Component {
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#inhalt > a:nth-child(5)').attr("href")
  let link2 = "http://www.wiwi.ruhr-uni-bochum.de" + $('#inhalt > a:nth-child(8)').attr("href")
- console.log(link + link2)
+
 
  links_health.push(link,link2)
  // crawl contents
@@ -452,7 +451,6 @@ class App extends React.Component {
  let $ = cheerio.load(html);
  let link= "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
  let link2 = "http://www.wiwi.ruhr-uni-bochum.de" + $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)').attr("href")
- console.log(link + link2)
 
  links_inno.push(link,link2)
  // crawl contents
@@ -483,7 +481,7 @@ class App extends React.Component {
  rp(CORS_PROXY + "http://www.wiwi.ruhr-uni-bochum.de/iwb/")
  .then(html => {
  const links_iwb = []
- let $ = cheerio.load(html);
+ // let $ = cheerio.load(html);
  // let link=  $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
  // let link2=  $('#seitennavigation > ul:nth-child(1) > li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)').attr("href")
  let link = 'http://www.wiwi.rub.de/iwb/aktuelle_lehrveranstaltungen_bachelor.html.de'
@@ -711,7 +709,7 @@ class App extends React.Component {
 
  setTimeout(
         function() {
-         this.setState({ isLoading: false });
+         this.setState({isLoading: false });
         }.bind(this),
        2000
      );
@@ -1277,7 +1275,7 @@ handleAbout = () => {
 handleHome = () => {
 
      this.setState(state => ({ showHome: true, showAbout: false,   }));
-     console.log("home clicked" + this.state.showHome)
+
      }
 
 
@@ -1290,6 +1288,7 @@ handleHome = () => {
           loop: true,
           autoplay: true,
           animationData: animationData,
+           renderer: 'svg',
           rendererSettings: {
 
           }
@@ -1302,14 +1301,15 @@ handleHome = () => {
          {isLoading ? (
             <div>  <Lottie
 	    options={defaultOptions}
-        height={400}
-        width={400}
-      /></div>
+        height={800}
+        width={800}
+      />
+      </div>
 
          ) : (
         <div class = "App">
 
-          <nav role="navigation" class="primary-navigation">
+          <nav role="navigation" className="primary-navigation">
                <img src={spreadsheet} alt="Logo" width="200" height="142" />
       <ul>
         <li><a href="#" onClick={this.handleHome}>Lehre VWL</a></li>
